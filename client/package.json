@@ -14,5 +14,7 @@
   "vite": "^5.0.0",
   "@vitejs/plugin-react": "^4.2.0",
   "wouter": "^3.3.0"
+   "@tanstack/react-query": "^5.0.0"
+
 }
 }
