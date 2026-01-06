@@ -1,13 +1,22 @@
-import { pgTable, text, serial, integer, boolean, timestamp, jsonb } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  serial,
+  integer,
+  boolean,
+  timestamp,
+  jsonb,
+} from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
-import { z } from "zod";
 
-// === TABLE DEFINITIONS ===
+// =======================
+// DATABASE TABLES (SERVER ONLY)
+// =======================
 
-// Users (for Admin access)
+// Users (Admin)
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
-  username: text("username").notNull().unique(), // Replit username
+  username: text("username").notNull().unique(),
   isAdmin: boolean("is_admin").default(false),
   createdAt: timestamp("created_at").defaultNow(),
 });
@@ -18,12 +27,14 @@ export const tours = pgTable("tours", {
   title: text("title").notNull(),
   description: text("description").notNull(),
   destination: text("destination").notNull(),
-  price: integer("price").notNull(), // Stored in lowest unit (e.g. cents or whole currency)
-  duration: text("duration").notNull(), // e.g. "5 Days / 4 Nights"
+  price: integer("price").notNull(),
+  duration: text("duration").notNull(),
   startDate: timestamp("start_date").notNull(),
   imageUrl: text("image_url").notNull(),
   isActive: boolean("is_active").default(true),
-  itinerary: jsonb("itinerary").$type<{day: number, title: string, description: string}[]>(), // Structured itinerary
+  itinerary: jsonb("itinerary").$type<
+    { day: number; title: string; description: string }[]
+  >(),
   whatsIncluded: text("whats_included").array(),
   whatsNotIncluded: text("whats_not_included").array(),
   createdAt: timestamp("created_at").defaultNow(),
@@ -36,15 +47,15 @@ export const inquiries = pgTable("inquiries", {
   email: text("email").notNull(),
   phone: text("phone").notNull(),
   destination: text("destination").notNull(),
-  duration: integer("duration").notNull(), // Number of days
+  duration: integer("duration").notNull(),
   adults: integer("adults").notNull(),
   children: integer("children").default(0),
-  budget: text("budget").notNull(), // Standard, Premium, Luxury
-  hotelPreference: text("hotel_preference"), // 3 Star, 4 Star, etc.
-  transportPreference: text("transport_preference"), // Flight, Train, Cab
-  startDate: text("start_date"), // Can be text for "Flexible" or specific date
+  budget: text("budget").notNull(),
+  hotelPreference: text("hotel_preference"),
+  transportPreference: text("transport_preference"),
+  startDate: text("start_date"),
   specialRequirements: text("special_requirements"),
-  status: text("status").default("pending"), // pending, contacted, closed
+  status: text("status").default("pending"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -57,27 +68,32 @@ export const bookings = pgTable("bookings", {
   phone: text("phone").notNull(),
   travelers: integer("travelers").notNull(),
   message: text("message"),
-  status: text("status").default("pending"), // pending, confirmed, cancelled
+  status: text("status").default("pending"),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
-// === SCHEMAS ===
+// =======================
+// INSERT SCHEMAS (SERVER ONLY)
+// =======================
 
-export const insertUserSchema = createInsertSchema(users).omit({ id: true, createdAt: true });
-export const insertTourSchema = createInsertSchema(tours).omit({ id: true, createdAt: true });
-export const insertInquirySchema = createInsertSchema(inquiries).omit({ id: true, createdAt: true, status: true });
-export const insertBookingSchema = createInsertSchema(bookings).omit({ id: true, createdAt: true, status: true });
+export const insertUserSchema = createInsertSchema(users).omit({
+  id: true,
+  createdAt: true,
+});
 
-// === TYPES ===
+export const insertTourSchema = createInsertSchema(tours).omit({
+  id: true,
+  createdAt: true,
+});
 
-export type User = typeof users.$inferSelect;
-export type InsertUser = z.infer<typeof insertUserSchema>;
+export const insertInquirySchema = createInsertSchema(inquiries).omit({
+  id: true,
+  createdAt: true,
+  status: true,
+});
 
-export type Tour = typeof tours.$inferSelect;
-export type InsertTour = z.infer<typeof insertTourSchema>;
-
-export type Inquiry = typeof inquiries.$inferSelect;
-export type InsertInquiry = z.infer<typeof insertInquirySchema>;
-
-export type Booking = typeof bookings.$inferSelect;
-export type InsertBooking = z.infer<typeof insertBookingSchema>;
+export const insertBookingSchema = createInsertSchema(bookings).omit({
+  id: true,
+  createdAt: true,
+  status: true,
+});
