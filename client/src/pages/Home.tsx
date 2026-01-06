@@ -9,8 +9,7 @@ import { TourCard } from "@/components/TourCard";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
-  const { data: tours, isLoading } = useTours();
-
+  const { data: tours, isLoading, error } = useTours();
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
