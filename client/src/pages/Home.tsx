@@ -60,8 +60,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-  );
-}
+  
       {/* Services Section */}
       <section className="py-24 bg-white relative">
         <div className="container mx-auto px-4">
