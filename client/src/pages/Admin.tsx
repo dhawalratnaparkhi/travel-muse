@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertTourSchema } from "@shared/client-schema";
+import { insertTourSchema } from "@/shared/client-schema";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { format } from "date-fns";
 import { Plus, Trash2, Loader2, Calendar } from "lucide-react";
