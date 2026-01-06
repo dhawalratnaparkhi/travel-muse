@@ -14,4 +14,14 @@ export default defineConfig({
       "@shared": path.resolve(__dirname, "../shared"),
     },
   },
+  server: {
+    fs: {
+      allow: [
+        // allow client root
+        __dirname,
+        // allow shared folder
+        path.resolve(__dirname, "../shared"),
+      ],
+    },
+  },
 });
