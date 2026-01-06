@@ -1,14 +1,24 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { api, type Booking } from "@/shared/routes";
-type InsertTour = {
-  id?: number;
-  title: string;
-  description: string;
-  destination: string;
-  price: number;
-  duration: string;
-  imageUrl: string;
+type Booking = {
+  id: number;
+  tourId: number;
+  name: string;
+  email: string;
+  phone: string;
+  travelers: number;
+  message?: string;
+  status: string;
 };
+
+type InsertBooking = {
+  tourId: number;
+  name: string;
+  email: string;
+  phone: string;
+  travelers: number;
+  message?: string;
+};
+
 import { useToast } from "@/hooks/use-toast";
 
 export function useBookings() {
