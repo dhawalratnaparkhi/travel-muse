@@ -2,7 +2,15 @@ import { Link } from "wouter";
 import { Clock, Calendar, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { Tour } from "@/shared/routes";
+type InsertTour = {
+  id?: number;
+  title: string;
+  description: string;
+  destination: string;
+  price: number;
+  duration: string;
+  imageUrl: string;
+};
 import { format } from "date-fns";
 
 interface TourCardProps {
