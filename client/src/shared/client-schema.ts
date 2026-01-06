@@ -44,3 +44,17 @@ export const adminLoginSchema = z.object({
 export type AdminLoginInput = z.infer<
   typeof adminLoginSchema
 >;
+// Inquiry (used by useCreateInquiry & forms)
+export const insertInquirySchema = z.object({
+  destination: z.string(),
+  duration: z.number(),
+  adults: z.number(),
+  children: z.number().optional(),
+  budget: z.string(),
+  hotelPreference: z.string().optional(),
+  transportPreference: z.string().optional(),
+  startDate: z.string().optional(),
+  specialRequirements: z.string().optional(),
+});
+
+export type InsertInquiry = z.infer<typeof insertInquirySchema>;
