@@ -1,6 +1,14 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api, type Inquiry } from "@/shared/routes";
-import type { InsertInquiry } from "@shared/schema";
+type InsertTour = {
+  id?: number;
+  title: string;
+  description: string;
+  destination: string;
+  price: number;
+  duration: string;
+  imageUrl: string;
+};
 import { useToast } from "@/hooks/use-toast";
 
 export function useInquiries() {
