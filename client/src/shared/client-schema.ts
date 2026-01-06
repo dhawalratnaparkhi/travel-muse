@@ -2,10 +2,9 @@ import { z } from "zod";
 
 // =======================
 // FRONTEND-SAFE SCHEMAS
-// (NO drizzle, NO database)
 // =======================
 
-// Custom Tour Form
+// Custom Tour
 export const customizedTourSchema = z.object({
   destination: z.string(),
   duration: z.number().min(1),
@@ -22,7 +21,7 @@ export type CustomizedTourInput = z.infer<
   typeof customizedTourSchema
 >;
 
-// Group Tour Booking Form
+// Group Tour Booking
 export const groupTourBookingSchema = z.object({
   tourId: z.number(),
   name: z.string(),
