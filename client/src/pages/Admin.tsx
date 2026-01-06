@@ -1,13 +1,4 @@
-type InsertTour = {
-  id?: number;
-  title: string;
-  description: string;
-  destination: string;
-  price: number;
-  duration: string;
-  imageUrl: string;
-  isActive?: boolean;
-};
+import type { InsertTour } from "@/shared/types";
 import { useAuth } from "@/hooks/use-auth";
 import { useInquiries } from "@/hooks/use-inquiries";
 import { useBookings } from "@/hooks/use-bookings";
