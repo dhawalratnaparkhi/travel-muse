@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
-import { api, type Booking } from "@shared/routes";
+import { api, type Booking } from "@/shared/routes";
 import type { InsertBooking } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
 
