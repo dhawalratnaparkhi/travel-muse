@@ -10,18 +10,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
-      "@shared": path.resolve(__dirname, "../shared"),
-    },
-  },
-  server: {
-    fs: {
-      allow: [
-        // allow client root
-        __dirname,
-        // allow shared folder
-        path.resolve(__dirname, "../shared"),
-      ],
-    },
-  },
+      "@": path.resolve(__dirname, "src")
+    }
+  }
 });
