@@ -15,7 +15,7 @@ import { format } from "date-fns";
 import { Card } from "@/components/ui/card";
 import { z } from "zod";
 
-const formSchema = insertBookingSchema.extend({
+const formSchema = bookingFormSchema.extend({
   travelers: z.coerce.number().min(1, "At least 1 traveler required"),
 });
 
