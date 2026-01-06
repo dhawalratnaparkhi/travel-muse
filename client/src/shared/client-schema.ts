@@ -1,11 +1,11 @@
 import { z } from "zod";
 
 // =======================
-// FRONTEND-SAFE SCHEMAS
+// FRONTEND FORM SCHEMAS
 // =======================
 
-// Custom Tour
-export const customizedTourSchema = z.object({
+// Custom Tour (frontend form)
+export const customTourFormSchema = z.object({
   destination: z.string(),
   duration: z.number().min(1),
   adults: z.number().min(1),
@@ -17,13 +17,10 @@ export const customizedTourSchema = z.object({
   specialRequirements: z.string().optional(),
 });
 
-export type CustomizedTourInput = z.infer<
-  typeof customizedTourSchema
->;
+export type CustomTourForm = z.infer<typeof customTourFormSchema>;
 
-// Group Tour Booking
-export const groupTourBookingSchema = z.object({
-  tourId: z.number(),
+// Booking form (frontend)
+export const bookingFormSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   phone: z.string(),
@@ -31,42 +28,12 @@ export const groupTourBookingSchema = z.object({
   message: z.string().optional(),
 });
 
-export type GroupTourBookingInput = z.infer<
-  typeof groupTourBookingSchema
->;
+export type BookingForm = z.infer<typeof bookingFormSchema>;
 
-// Admin Login
-export const adminLoginSchema = z.object({
+// Admin login
+export const adminLoginFormSchema = z.object({
   username: z.string(),
   password: z.string(),
 });
 
-export type AdminLoginInput = z.infer<
-  typeof adminLoginSchema
->;
-// Inquiry (used by useCreateInquiry & forms)
-export const insertInquirySchema = z.object({
-  destination: z.string(),
-  duration: z.number(),
-  adults: z.number(),
-  children: z.number().optional(),
-  budget: z.string(),
-  hotelPreference: z.string().optional(),
-  transportPreference: z.string().optional(),
-  startDate: z.string().optional(),
-  specialRequirements: z.string().optional(),
-});
-
-export type InsertInquiry = z.infer<typeof insertInquirySchema>;
-// Booking (used by useCreateBooking & forms)
-export const insertBookingSchema = z.object({
-  tourId: z.number(),
-  name: z.string(),
-  email: z.string().email(),
-  phone: z.string(),
-  travelers: z.number().min(1),
-  message: z.string().optional(),
-});
-
-export type InsertBooking = z.infer<typeof insertBookingSchema>;
-
+export type AdminLoginForm = z.infer<typeof adminLoginFormSchema>;
