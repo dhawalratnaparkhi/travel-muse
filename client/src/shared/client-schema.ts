@@ -58,3 +58,15 @@ export const insertInquirySchema = z.object({
 });
 
 export type InsertInquiry = z.infer<typeof insertInquirySchema>;
+// Booking (used by useCreateBooking & forms)
+export const insertBookingSchema = z.object({
+  tourId: z.number(),
+  name: z.string(),
+  email: z.string().email(),
+  phone: z.string(),
+  travelers: z.number().min(1),
+  message: z.string().optional(),
+});
+
+export type InsertBooking = z.infer<typeof insertBookingSchema>;
+
