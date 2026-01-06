@@ -1,37 +1,44 @@
 import { z } from "zod";
 
-/**
- * CLIENT-SAFE SCHEMAS
- * Only Zod + types
- * NO drizzle, NO database code
- */
+// =======================
+// FRONTEND-SAFE SCHEMAS
+// (NO drizzle, NO database)
+// =======================
 
-/* Customized Tour */
+// Custom Tour Form
 export const customizedTourSchema = z.object({
-  days: z.number().min(1),
-  hotelTier: z.string(),
-  travelers: z.number().min(1),
+  destination: z.string(),
+  duration: z.number().min(1),
+  adults: z.number().min(1),
+  children: z.number().min(0),
+  budget: z.string(),
+  hotelPreference: z.string().optional(),
+  transportPreference: z.string().optional(),
+  startDate: z.string().optional(),
+  specialRequirements: z.string().optional(),
 });
 
 export type CustomizedTourInput = z.infer<
   typeof customizedTourSchema
 >;
 
-/* Group Tour Booking */
+// Group Tour Booking Form
 export const groupTourBookingSchema = z.object({
+  tourId: z.number(),
   name: z.string(),
   email: z.string().email(),
   phone: z.string(),
-  seats: z.number().min(1),
+  travelers: z.number().min(1),
+  message: z.string().optional(),
 });
 
 export type GroupTourBookingInput = z.infer<
   typeof groupTourBookingSchema
 >;
 
-/* Admin Login / Forms */
+// Admin Login
 export const adminLoginSchema = z.object({
-  email: z.string().email(),
+  username: z.string(),
   password: z.string(),
 });
 
