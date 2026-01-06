@@ -31,7 +31,7 @@ export default function Home() {
 
   // ✅ NORMAL HOMEPAGE RENDER
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white text-black">
       <Navbar />
 
       {/* HERO SECTION */}
