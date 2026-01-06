@@ -10,7 +10,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
   const { data: tours, isLoading, error } = useTours();
-  return (
+  if (error) { 
+    return (
     <div className="min-h-screen bg-background">
       <Navbar />
       
@@ -59,7 +60,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
+  );
+}
       {/* Services Section */}
       <section className="py-24 bg-white relative">
         <div className="container mx-auto px-4">
@@ -165,7 +167,7 @@ export default function Home() {
                   </div>
                 </div>
               ))
-            ) : tours?.length === 0 ? (
+          ) : !tours || tours.length === 0 ? (
               <div className="col-span-full text-center py-12">
                 <p className="text-muted-foreground text-lg">No upcoming tours at the moment. Check back soon!</p>
               </div>
