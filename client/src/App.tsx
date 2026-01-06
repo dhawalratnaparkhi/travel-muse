@@ -1,8 +1,16 @@
+import { Switch, Route } from "wouter";
+import Home from "@/pages/Home";
+import GroupTours from "@/pages/GroupTours";
+import CustomizedTour from "@/pages/CustomizedTour";
+import Admin from "@/pages/Admin";
+
 export default function App() {
   return (
-    <div style={{ padding: 40 }}>
-      <h1>Travel Muse</h1>
-      <p>If you see this, React is rendering correctly.</p>
-    </div>
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/tours" component={GroupTours} />
+      <Route path="/custom" component={CustomizedTour} />
+      <Route path="/admin" component={Admin} />
+    </Switch>
   );
 }
