@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Clock, Calendar, ArrowRight } from "lucide-react";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import type { Tour } from "@shared/routes";
+import type { Tour } from "@/shared/routes";
 import { format } from "date-fns";
 
 interface TourCardProps {
